@@ -41,8 +41,17 @@ Point addition and doubling with affine and projective coordinates are described
 
 The formulas with the affine coordinates contain modular divisions, which are slow. The formulas with the projective coordinates are more complex and contain more operations, but no modular divisions, which is why they are more performant overall. Because of the large scalars in point multiplication, many point additions and point doublings are carried out, which is why the performance gain due to the projective coordinates is multiplied. Therefore, the projective coordinates are used in practice.
 
-In *100_point_addition* the point addition and doubling in affine and projective coordinates and the transformation between both coordinate systems is implemented. Tests are also included for both coordinate systems. 
+In *100_point_addition.py* the point addition and doubling in affine and projective coordinates and the transformation between both coordinate systems is implemented. Tests are also included for both coordinate systems. 
 
+--------------
+
+**Part 2: Point multiplication**
+
+For point multiplication, the [Montgomery ladder][2_1] is used. The Montgomery ladder is time constant, since a fixed number of bits is used for each scalar (of the size of the order of the generator point) and identical operations are performed for 0- and 1-bits.
+
+For the point addition and doubling used by the Montgomery Ladder, the projective coordinates are applied.
+
+*200_point_multiplication.py* implements point multiplication and some tests.
 
 [i_1]: https://planetmath.org/weierstrassequationofanellipticcurve
 [i_2]: hhttps://cryptobook.nakov.com/asymmetric-key-ciphers/elliptic-curve-cryptography-ecc#elliptic-curves-over-finite-fields
@@ -51,5 +60,6 @@ In *100_point_addition* the point addition and doubling in affine and projective
 [1_5]: https://www.nayuki.io/page/elliptic-curve-point-addition-in-projective-coordinates
 [1_6]: https://en.wikipedia.org/wiki/Elliptic_curve#Algebraic_interpretation
 [1_7]: https://en.wikibooks.org/wiki/Cryptography/Prime_Curve/Standard_Projective_Coordinates
+[2_1]: https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication#Montgomery_ladder
 
 
