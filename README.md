@@ -54,7 +54,7 @@ For the point addition and doubling used by the Montgomery Ladder, the projectiv
 *200_point_multiplication.py* implements point multiplication and some tests.
 
 [i_1]: https://planetmath.org/weierstrassequationofanellipticcurve
-[i_2]: hhttps://cryptobook.nakov.com/asymmetric-key-ciphers/elliptic-curve-cryptography-ecc#elliptic-curves-over-finite-fields
+[i_2]: https://cryptobook.nakov.com/asymmetric-key-ciphers/elliptic-curve-cryptography-ecc#elliptic-curves-over-finite-fields
 [i_3]: https://en.wikipedia.org/wiki/Elliptic_curve#Alternative_representations_of_elliptic_curves
 [i_4]: https://www.secg.org/sec2-v2.pdf
 [1_5]: https://www.nayuki.io/page/elliptic-curve-point-addition-in-projective-coordinates
