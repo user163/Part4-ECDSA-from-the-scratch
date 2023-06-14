@@ -1,6 +1,5 @@
 # Part4-ECDSA-from-the-scratch
 
-# Introduction
 The following implementation is intended to illustrate the implementation of ECDSA and is not intended for production use.
 
 Elliptic curves are described by the [general Weierstrass equation][i_1]:
@@ -34,14 +33,23 @@ n:		0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141")  # orde
 h:		1                                                                     # cofactor
 ```
 
-# Part 1: Point addition
+---------------
+
+**Part 1: Point addition**
+
+Point addition and doubling with affine and projective coordinates are described e.g. in [Elliptic curve point addition in projective coordinates, Arithmetic in affine coordinates][1_5], [Wikipedia, Elliptic curve, Algebraic interpretation][1_6], [Wikibooks, Cryptography/Prime Curve/Standard Projective Coordinates][1_7]. 
+
+The formulas with the affine coordinates contain modular divisions, which are slow. The formulas with the projective coordinates are more complex and contain more operations, but no modular divisions, which is why they are more performant overall. Because of the large scalars in point multiplication, many point additions and point doublings are carried out, which is why the performance gain due to the projective coordinates is multiplied. Therefore, the projective coordinates are used in practice.
+
+In *100_point_addition* the point addition and doubling in affine and projective coordinates and the transformation between both coordinate systems is implemented. Tests are also included for both coordinate systems. 
+
 
 [i_1]: https://planetmath.org/weierstrassequationofanellipticcurve
 [i_2]: hhttps://cryptobook.nakov.com/asymmetric-key-ciphers/elliptic-curve-cryptography-ecc#elliptic-curves-over-finite-fields
 [i_3]: https://en.wikipedia.org/wiki/Elliptic_curve#Alternative_representations_of_elliptic_curves
 [i_4]: https://www.secg.org/sec2-v2.pdf
-[5]: https://www.nayuki.io/page/elliptic-curve-point-addition-in-projective-coordinates
-[6]: https://en.wikipedia.org/wiki/Elliptic_curve#Algebraic_interpretation
-[7]: https://en.wikibooks.org/wiki/Cryptography/Prime_Curve/Standard_Projective_Coordinates
+[1_5]: https://www.nayuki.io/page/elliptic-curve-point-addition-in-projective-coordinates
+[1_6]: https://en.wikipedia.org/wiki/Elliptic_curve#Algebraic_interpretation
+[1_7]: https://en.wikibooks.org/wiki/Cryptography/Prime_Curve/Standard_Projective_Coordinates
 
 
