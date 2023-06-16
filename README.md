@@ -53,6 +53,21 @@ For the point addition and doubling used by the Montgomery Ladder, the projectiv
 
 *200_point_multiplication.py* implements point multiplication and some tests.
 
+--------------
+
+**Part 3: Point compression**
+
+A public EC key is an EC point. 
+
+A possible format of a public key is the uncompressed format. This consists of the concatenation of the marker byte 0x04 and x and y coordinates, concerning the last two each as byte sequence in big endian order, if necessary padded from the front with 0x00 values to the size of the order of the generator point. 
+
+Besides there is the compressed format, which consists of the concatenation of a marker byte and the x coordinate. The marker byte is 0x02 if y is even or 0x03 if it is odd. 
+This information is complete, i.e. sufficient to reconstruct the y coordinate. If x is substituted into the short Weierstrass equation, the solution is the two values y and p-y, one of which is even and one odd. The marker byte can be used to identify the matching solution. In this way, the uncompressed key is reconstructed from the compressed key.
+
+In the case of secp256k1, the size of the order of the generator point is 32 bytes, so an uncompressed key is 1+2*32=65 bytes in size and a compressed 1+32=33 bytes.
+
+The compression and uncompression including tests is implemented in *300_point_compression.py*. Note that for the determination of y and p-y it was exploited that for secp256k1 the modulus is congruent to 3 modulus 4 and therefore [this solution path][3_1] was used. In case of a generalization to arbitrary curves, the other solution paths have to be considered/implemented if necessary. 
+
 [i_1]: https://planetmath.org/weierstrassequationofanellipticcurve
 [i_2]: https://cryptobook.nakov.com/asymmetric-key-ciphers/elliptic-curve-cryptography-ecc#elliptic-curves-over-finite-fields
 [i_3]: https://en.wikipedia.org/wiki/Elliptic_curve#Alternative_representations_of_elliptic_curves
@@ -61,5 +76,6 @@ For the point addition and doubling used by the Montgomery Ladder, the projectiv
 [1_6]: https://en.wikipedia.org/wiki/Elliptic_curve#Algebraic_interpretation
 [1_7]: https://en.wikibooks.org/wiki/Cryptography/Prime_Curve/Standard_Projective_Coordinates
 [2_1]: https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication#Montgomery_ladder
+[3_1]: https://www.rieselprime.de/ziki/Modular_square_root#Modulus_congruent_to_3_modulo_4
 
 
