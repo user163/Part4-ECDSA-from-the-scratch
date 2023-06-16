@@ -78,4 +78,3 @@ The compression and uncompression including tests is implemented in *300_point_c
 [2_1]: https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication#Montgomery_ladder
 [3_1]: https://www.rieselprime.de/ziki/Modular_square_root#Modulus_congruent_to_3_modulo_4
 
-
