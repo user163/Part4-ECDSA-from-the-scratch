@@ -96,7 +96,7 @@ The steps in verifying are:
 input: msg, r|s, pubKey 
 1. Calculate message hash h = hash(msg)
 2. Calculate s^-1 with s^-1 is the modular inverse of s
-3. Recover Recover R_rec = (h * s^-1) * G + (r * s^-1) * pubKey and r_rec = R_rec.x
+3. Recover R_rec = (h * s^-1) * G + (r * s^-1) * pubKey and r_rec = R_rec.x
 4. Return r == r_rec
 
 Signing and verifying is implemented in *500_signing_verifying.py*. The implementation is tested with [*pyca/cryptopgraphy*][5_2], so there is a corresponding dependency. 
