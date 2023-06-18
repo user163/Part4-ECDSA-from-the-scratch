@@ -193,7 +193,7 @@ print("Verify with ecdsa_verify(): " + str(verified))
 print()
 
 #
-# Ckeck with PyCryptodome
+# Ckeck with pyca/cryptography
 #
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import ec
