@@ -78,6 +78,31 @@ When generating a key pair:
 
 *400_key_generation.py* contains the key generation implementation and a test.
 
+-------------
+
+**Part 5: Signing and verifying**
+
+Signing and verifying with ECDSA is described e.g. in [ECDSA: Elliptic Curve Signatures][5_1].
+
+The steps in signing are:   
+input: msg, privKey 
+1. Calculate message hash h = hash(msg)
+2. Generate random k in the range [0, n-1]
+3. Cacluclate point R = k * G and r = R.x
+4. Calculate signature proof s = k^-1 *(h + r * privKey) with k^-1 is the modular inverse of k
+5. Return r|s
+
+The steps in verifying are:   
+input: msg, r|s, pubKey 
+1. Calculate message hash h = hash(msg)
+2. Calculate s^-1 with s^-1 is the modular inverse of s
+3. Recover Recover R_rec = (h * s^-1) * G + (r * s^-1) * pubKey and r_rec = R_rec.x
+4. Return r == r_rec
+
+Signing and verifying is implemented in *500_signing_verifying.py*. The implementation is tested with [*pyca/cryptopgraphy*][5_2], so there is a corresponding dependency. 
+
+[5_1]: https://cryptobook.nakov.com/digital-signatures/ecdsa-sign-verify-messages
+
 [i_1]: https://planetmath.org/weierstrassequationofanellipticcurve
 [i_2]: https://cryptobook.nakov.com/asymmetric-key-ciphers/elliptic-curve-cryptography-ecc#elliptic-curves-over-finite-fields
 [i_3]: https://en.wikipedia.org/wiki/Elliptic_curve#Alternative_representations_of_elliptic_curves
@@ -87,4 +112,5 @@ When generating a key pair:
 [1_7]: https://en.wikibooks.org/wiki/Cryptography/Prime_Curve/Standard_Projective_Coordinates
 [2_1]: https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication#Montgomery_ladder
 [3_1]: https://www.rieselprime.de/ziki/Modular_square_root#Modulus_congruent_to_3_modulo_4
-
+[5_1]: https://cryptobook.nakov.com/digital-signatures/ecdsa-sign-verify-messages
+[5_2]: https://cryptography.io/en/latest/
